@@ -1,0 +1,11 @@
+c:\users\gersy\documents\visual studio 2012\Projects\HostInjector\HostInjector\bin\Debug\HostInjector.exe
+c:\users\gersy\documents\visual studio 2012\Projects\HostInjector\HostInjector\bin\Debug\HostInjector.pdb
+c:\users\gersy\documents\visual studio 2012\Projects\HostInjector\HostInjector\obj\Debug\HostInjector.csprojResolveAssemblyReference.cache
+c:\users\gersy\documents\visual studio 2012\Projects\HostInjector\HostInjector\obj\Debug\HostInjector.FormMain.resources
+c:\users\gersy\documents\visual studio 2012\Projects\HostInjector\HostInjector\obj\Debug\HostInjector.Properties.Resources.resources
+c:\users\gersy\documents\visual studio 2012\Projects\HostInjector\HostInjector\obj\Debug\HostInjector.csproj.GenerateResource.Cache
+c:\users\gersy\documents\visual studio 2012\Projects\HostInjector\HostInjector\obj\Debug\HostInjector.exe
+c:\users\gersy\documents\visual studio 2012\Projects\HostInjector\HostInjector\obj\Debug\HostInjector.pdb
+c:\users\gersy\documents\visual studio 2012\Projects\HostInjector\HostInjector\bin\Debug\HostInjector.exe.config
+c:\users\gersy\documents\visual studio 2012\Projects\HostInjector\HostInjector\obj\Debug\HostInjector.FormRender.resources
+c:\users\gersy\documents\visual studio 2012\Projects\HostInjector\HostInjector\obj\Debug\HostInjector.FormAbout.resources
