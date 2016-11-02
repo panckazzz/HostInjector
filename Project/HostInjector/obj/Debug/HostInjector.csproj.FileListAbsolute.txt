@@ -9,3 +9,14 @@ c:\users\gersy\documents\visual studio 2012\Projects\HostInjector\HostInjector\o
 c:\users\gersy\documents\visual studio 2012\Projects\HostInjector\HostInjector\bin\Debug\HostInjector.exe.config
 c:\users\gersy\documents\visual studio 2012\Projects\HostInjector\HostInjector\obj\Debug\HostInjector.FormRender.resources
 c:\users\gersy\documents\visual studio 2012\Projects\HostInjector\HostInjector\obj\Debug\HostInjector.FormAbout.resources
+C:\Users\Gersy\Documents\Visual Studio 2012\Projects\HostInjector\Project\HostInjector\bin\Debug\HostInjector.exe.config
+C:\Users\Gersy\Documents\Visual Studio 2012\Projects\HostInjector\Project\HostInjector\obj\Debug\HostInjector.exe
+C:\Users\Gersy\Documents\Visual Studio 2012\Projects\HostInjector\Project\HostInjector\obj\Debug\HostInjector.pdb
+C:\Users\Gersy\Documents\Visual Studio 2012\Projects\HostInjector\Project\HostInjector\bin\Debug\HostInjector.exe
+C:\Users\Gersy\Documents\Visual Studio 2012\Projects\HostInjector\Project\HostInjector\bin\Debug\HostInjector.pdb
+C:\Users\Gersy\Documents\Visual Studio 2012\Projects\HostInjector\Project\HostInjector\obj\Debug\HostInjector.csprojResolveAssemblyReference.cache
+C:\Users\Gersy\Documents\Visual Studio 2012\Projects\HostInjector\Project\HostInjector\obj\Debug\HostInjector.FormMain.resources
+C:\Users\Gersy\Documents\Visual Studio 2012\Projects\HostInjector\Project\HostInjector\obj\Debug\HostInjector.FormAbout.resources
+C:\Users\Gersy\Documents\Visual Studio 2012\Projects\HostInjector\Project\HostInjector\obj\Debug\HostInjector.FormRender.resources
+C:\Users\Gersy\Documents\Visual Studio 2012\Projects\HostInjector\Project\HostInjector\obj\Debug\HostInjector.Properties.Resources.resources
+C:\Users\Gersy\Documents\Visual Studio 2012\Projects\HostInjector\Project\HostInjector\obj\Debug\HostInjector.csproj.GenerateResource.Cache

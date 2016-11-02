@@ -67,12 +67,13 @@ namespace HostInjector
             string ResponseMessage="";
             if (textBox1.Text.Length < 2)
             {
-                MessageBox.Show("invalid Url");
+                MessageBox.Show("invalid domain");
                 return;
             }
 
             try
             {
+                this.counter++;
                 string url = textBox1.Text;
                 if (textBox1.Text.StartsWith("http://") == false && textBox1.Text.StartsWith("https") == false)
                     url = "http"+(checkBoxHTTPs.Checked?"s":"")+"://" + url;
@@ -98,7 +99,7 @@ namespace HostInjector
                 this.CurrentBody += s.ReadToEnd();
                 ResponseMessage += "\n\n" + this.CurrentBody;
                 richTextBoxResponseResult.Text = ResponseMessage;
-                labelStatue.Text = "success";
+                labelStatue.Text = "[" + this.counter.ToString() + "] success";
             }
             catch (Exception x)
             {
@@ -109,7 +110,7 @@ namespace HostInjector
                     var s = (x as System.Net.WebException).Response;
                     var sc = s.GetResponseStream();
                     string body = new StreamReader(sc).ReadToEnd();
-                    string responseMessage = "HTTP/1.1 "+(x.Message.Contains("404")?"404":code)+"\n";
+                    string responseMessage = "HTTP/1.1 "+(code)+"\n";
                     for (int i = 0; i < s.Headers.Count; i++)
                     {
                         try
@@ -123,11 +124,11 @@ namespace HostInjector
                     this.CurrentBody = body;
                     responseMessage = responseMessage + "\n\n" + body;
                     richTextBoxResponseResult.Text = responseMessage;
-                    labelStatue.Text = "success";
+                    labelStatue.Text = "["+this.counter.ToString()+"] success";
 
 
                 }
-                catch { labelStatue.Text = "Error"; }
+                catch { labelStatue.Text = "["+this.counter.ToString()+"] Error"; }
 
             }
             try
@@ -136,7 +137,7 @@ namespace HostInjector
             }
             catch { }
         }
-
+        private int counter=0;
         private string ExtractCode(string p)
         {
             //The remote server returned an error: (402) Payment Required.
