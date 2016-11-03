@@ -49,6 +49,6 @@ namespace HostInjector
             
         }
 
-        public static string version = "0.2.2"; 
+        public static string version = "0.2.4"; 
     }
 }

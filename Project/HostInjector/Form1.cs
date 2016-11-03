@@ -37,8 +37,34 @@ namespace HostInjector
             comboBox1.Items.Add(h + "@evil.net"+h);
             comboBox1.Items.Add("%55" + h);
             comboBox1.Items.Add("%%35%%36." + h);
+
+            comboBox1.Items.Add(  h+"."+StripExceptLastDot(h));
             comboBox1.SelectedIndex = 0;
 
+
+        }
+
+        private string StripExceptLastDot(string h)
+        {
+            int c=0;
+            foreach (char cc in h)
+            { if (cc == '.')
+                    c++;
+            }
+            if (c<2)
+                 return h;
+            string [] arr = h.Split('.');
+            string res="";
+            for (int i = 0; i < arr.Length; i++)
+            {
+
+                if (i==arr.Length-1)
+                    res +="."+arr[i];
+                else 
+                    res +=arr[i];
+            
+            }
+            return res;
 
         }
 
@@ -102,7 +128,7 @@ namespace HostInjector
                 ResponseMessage += "\n";
                 StreamReader s = new StreamReader(res.GetResponseStream());
                 this.CurrentBody += s.ReadToEnd();
-                ResponseMessage += "\n\n" + this.CurrentBody;
+                ResponseMessage +=  this.CurrentBody;
                 richTextBoxResponseResult.Text = ResponseMessage;
                 labelStatue.Text = "[" + this.counter.ToString() + "] success";
             }
