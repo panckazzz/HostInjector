@@ -22,12 +22,12 @@ namespace HostInjector
         {
             btnSubmit.Enabled = IsValidDomain(textBox1.Text);
             comboBox1.Items.Clear();
-            string h = textBox1.Text.Trim().Replace(" ", "");
-            string tmp="";
-            foreach(char c in h)
-                if ((c=='.')||(c>='0'&& c<='9')||((c>='A' && c<='z')))
-                    tmp+=c.ToString();
-            h=tmp;
+            string h =TrimHost( textBox1.Text.Trim().Replace(" ", ""));
+            //string tmp="";
+            //foreach(char c in h)
+            //    if ((c=='.')||(c>='0'&& c<='9')||((c>='A' && c<='z')))
+            //        tmp+=c.ToString();
+            //h=tmp;
 
             comboBox1.Items.Add(h + ".evil.net");
             comboBox1.Items.Add(h+  ".evil.net"+h);
@@ -70,11 +70,15 @@ namespace HostInjector
                 MessageBox.Show("invalid domain");
                 return;
             }
-
+            richTextBoxResponseResult.Text = "";
+            labelStatue.Text = "";
             try
             {
                 this.counter++;
                 string url = textBox1.Text;
+                string domain = TrimHost(textBox1.Text);
+
+                storeLastHost(domain);
                 if (textBox1.Text.StartsWith("http://") == false && textBox1.Text.StartsWith("https") == false)
                     url = "http"+(checkBoxHTTPs.Checked?"s":"")+"://" + url;
                 var req = (HttpWebRequest)WebRequest.Create(url);
@@ -84,8 +88,9 @@ namespace HostInjector
                
             
                 var res = (HttpWebResponse)req.GetResponse();
-
-                ResponseMessage = "HTTP/1.1 "+res.StatusCode+" "+res.StatusDescription+"\n";
+                string stcod = ((int)res.StatusCode).ToString();
+                string stDesc = res.StatusDescription;
+                ResponseMessage = "HTTP/1.1 "+(stcod+" "+stDesc) +"\n";
                 for (int i = 0; i < res.Headers.Count; i++)
                 {
                     try{
@@ -128,14 +133,39 @@ namespace HostInjector
 
 
                 }
-                catch { labelStatue.Text = "["+this.counter.ToString()+"] Error"; }
+                catch(Exception xsa) { labelStatue.Text = "["+this.counter.ToString()+"] Error "+xsa.Message; }
 
             }
+           
+        }
+
+        private void storeLastHost(string h)
+        {
             try
             {
-                System.IO.File.WriteAllText("Last.host", textBox1.Text);
+                System.IO.File.WriteAllText("Last.host", h);
             }
             catch { }
+        }
+
+        private string TrimHost(string p)
+        {
+            p = p.ToLower();
+            if (p.ToLower().Contains("http://"))
+                p = p.Replace("http://", "");
+            if (p.ToLower().Contains("https://"))
+                p = p.Replace("https://", "");
+            string ptrn = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.1234567890";
+            string res = "";
+            foreach (char c in p)
+            {
+                if (ptrn.Contains(c))
+                    res += c.ToString();
+                else
+                    break;
+            }
+            return res;
+
         }
         private int counter=0;
         private string ExtractCode(string p)
@@ -156,7 +186,10 @@ namespace HostInjector
         private void richTextBoxResponseResult_TextChanged(object sender, EventArgs e)
         {
             linkLabelRender.Visible = richTextBoxResponseResult.TextLength > 4;
-            labelVulnerable.Visible = richTextBoxResponseResult.Text.Contains("Location: "+comboBox1.SelectedItem.ToString());
+            bool b2 = richTextBoxResponseResult.Text.Contains("Location: " + comboBox1.SelectedItem.ToString());
+            bool b3 = richTextBoxResponseResult.Text.Contains("Location: http://" + comboBox1.SelectedItem.ToString());
+            bool b4 = richTextBoxResponseResult.Text.Contains("Location: https://" + comboBox1.SelectedItem.ToString());
+            labelVulnerable.Visible = b2||b3||b4;
 
         }
 

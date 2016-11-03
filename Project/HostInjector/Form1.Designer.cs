@@ -30,6 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.labelVulnerable = new System.Windows.Forms.Label();
+            this.linkLabelRender = new System.Windows.Forms.LinkLabel();
+            this.linkLabelAbout = new System.Windows.Forms.LinkLabel();
             this.checkBoxHTTPs = new System.Windows.Forms.CheckBox();
             this.labelStatue = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -38,9 +41,6 @@
             this.btnSubmit = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.richTextBoxResponseResult = new System.Windows.Forms.RichTextBox();
-            this.linkLabelAbout = new System.Windows.Forms.LinkLabel();
-            this.linkLabelRender = new System.Windows.Forms.LinkLabel();
-            this.labelVulnerable = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,6 +65,40 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(528, 376);
             this.panel1.TabIndex = 0;
+            // 
+            // labelVulnerable
+            // 
+            this.labelVulnerable.AutoSize = true;
+            this.labelVulnerable.ForeColor = System.Drawing.Color.DarkGreen;
+            this.labelVulnerable.Location = new System.Drawing.Point(266, 351);
+            this.labelVulnerable.Name = "labelVulnerable";
+            this.labelVulnerable.Size = new System.Drawing.Size(57, 13);
+            this.labelVulnerable.TabIndex = 12;
+            this.labelVulnerable.Text = "Vulnerable";
+            this.labelVulnerable.Visible = false;
+            // 
+            // linkLabelRender
+            // 
+            this.linkLabelRender.AutoSize = true;
+            this.linkLabelRender.Location = new System.Drawing.Point(479, 349);
+            this.linkLabelRender.Name = "linkLabelRender";
+            this.linkLabelRender.Size = new System.Drawing.Size(30, 13);
+            this.linkLabelRender.TabIndex = 11;
+            this.linkLabelRender.TabStop = true;
+            this.linkLabelRender.Text = "View";
+            this.linkLabelRender.Visible = false;
+            this.linkLabelRender.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelRender_LinkClicked);
+            // 
+            // linkLabelAbout
+            // 
+            this.linkLabelAbout.AutoSize = true;
+            this.linkLabelAbout.Location = new System.Drawing.Point(489, 3);
+            this.linkLabelAbout.Name = "linkLabelAbout";
+            this.linkLabelAbout.Size = new System.Drawing.Size(35, 13);
+            this.linkLabelAbout.TabIndex = 10;
+            this.linkLabelAbout.TabStop = true;
+            this.linkLabelAbout.Text = "About";
+            this.linkLabelAbout.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelAbout_LinkClicked);
             // 
             // checkBoxHTTPs
             // 
@@ -135,46 +169,13 @@
             this.richTextBoxResponseResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.richTextBoxResponseResult.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTextBoxResponseResult.Location = new System.Drawing.Point(23, 112);
             this.richTextBoxResponseResult.Name = "richTextBoxResponseResult";
             this.richTextBoxResponseResult.Size = new System.Drawing.Size(487, 234);
             this.richTextBoxResponseResult.TabIndex = 4;
             this.richTextBoxResponseResult.Text = "";
             this.richTextBoxResponseResult.TextChanged += new System.EventHandler(this.richTextBoxResponseResult_TextChanged);
-            // 
-            // linkLabelAbout
-            // 
-            this.linkLabelAbout.AutoSize = true;
-            this.linkLabelAbout.Location = new System.Drawing.Point(489, 3);
-            this.linkLabelAbout.Name = "linkLabelAbout";
-            this.linkLabelAbout.Size = new System.Drawing.Size(35, 13);
-            this.linkLabelAbout.TabIndex = 10;
-            this.linkLabelAbout.TabStop = true;
-            this.linkLabelAbout.Text = "About";
-            this.linkLabelAbout.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelAbout_LinkClicked);
-            // 
-            // linkLabelRender
-            // 
-            this.linkLabelRender.AutoSize = true;
-            this.linkLabelRender.Location = new System.Drawing.Point(479, 349);
-            this.linkLabelRender.Name = "linkLabelRender";
-            this.linkLabelRender.Size = new System.Drawing.Size(30, 13);
-            this.linkLabelRender.TabIndex = 11;
-            this.linkLabelRender.TabStop = true;
-            this.linkLabelRender.Text = "View";
-            this.linkLabelRender.Visible = false;
-            this.linkLabelRender.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelRender_LinkClicked);
-            // 
-            // labelVulnerable
-            // 
-            this.labelVulnerable.AutoSize = true;
-            this.labelVulnerable.ForeColor = System.Drawing.Color.DarkGreen;
-            this.labelVulnerable.Location = new System.Drawing.Point(266, 351);
-            this.labelVulnerable.Name = "labelVulnerable";
-            this.labelVulnerable.Size = new System.Drawing.Size(57, 13);
-            this.labelVulnerable.TabIndex = 12;
-            this.labelVulnerable.Text = "Vulnerable";
-            this.labelVulnerable.Visible = false;
             // 
             // FormMain
             // 
