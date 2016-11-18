@@ -83,7 +83,7 @@ namespace HostInjector
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            this.Text += " v."+Program.version+" Beta";
+            this.Text += " v."+Program.version+" ";
             this.MinimumSize = this.Size;
             textBox1.Text = "google.com";
             try
