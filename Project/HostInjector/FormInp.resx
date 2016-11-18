@@ -117,19 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="richTextBox1.Text" xml:space="preserve">
-    <value>This Tool was developed by Yasser Gersy @securitytraning  for detecting improper checking on http host header , no copy rights no license  you can use / edit or distribute  it without any limitations. It was developed in oct 2016  in .Net and source code is available for securitytraning.com users and any one interested in web app sec.
-
-If this tool helped you , and you would like to send some bitcoins , push them here 
-1NeMmx4r3j14EveSkyx144onexhkhQ5dqH
-
-For any suggest/inquiry/support:
-Twitter        https://twitter.com/yassergersy
-
-Facebook   https://facebook.com/9ersy
-
-Github        https://github.com/yassergersy
-
-Mail :           gersy.ch2@gmail.com</value>
-  </data>
 </root>

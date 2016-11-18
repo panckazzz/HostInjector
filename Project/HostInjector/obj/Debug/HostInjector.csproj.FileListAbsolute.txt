@@ -20,3 +20,4 @@ C:\Users\Gersy\Documents\Visual Studio 2012\Projects\HostInjector\Project\HostIn
 C:\Users\Gersy\Documents\Visual Studio 2012\Projects\HostInjector\Project\HostInjector\obj\Debug\HostInjector.FormRender.resources
 C:\Users\Gersy\Documents\Visual Studio 2012\Projects\HostInjector\Project\HostInjector\obj\Debug\HostInjector.Properties.Resources.resources
 C:\Users\Gersy\Documents\Visual Studio 2012\Projects\HostInjector\Project\HostInjector\obj\Debug\HostInjector.csproj.GenerateResource.Cache
+C:\Users\Gersy\Documents\Visual Studio 2012\Projects\HostInjector\Project\HostInjector\obj\Debug\HostInjector.FormInp.resources

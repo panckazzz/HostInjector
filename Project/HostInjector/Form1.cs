@@ -20,28 +20,36 @@ namespace HostInjector
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
+            labelFilteredHost_Click(null, null);
             btnSubmit.Enabled = IsValidDomain(textBox1.Text);
             comboBox1.Items.Clear();
-            string h =TrimHost( textBox1.Text.Trim().Replace(" ", ""));
-            //string tmp="";
-            //foreach(char c in h)
-            //    if ((c=='.')||(c>='0'&& c<='9')||((c>='A' && c<='z')))
-            //        tmp+=c.ToString();
-            //h=tmp;
-
-            comboBox1.Items.Add(h + ".evil.net");
-            comboBox1.Items.Add(h+  ".evil.net"+h);
-            comboBox1.Items.Add(h+  ":80.evil.net");
-            comboBox1.Items.Add(h + "@evil.net");
-            comboBox1.Items.Add(h + ":80.evil.net"+h);
-            comboBox1.Items.Add(h + "@evil.net"+h);
-            comboBox1.Items.Add("%55" + h);
-            comboBox1.Items.Add("%%35%%36." + h);
-
-            comboBox1.Items.Add(  h+"."+StripExceptLastDot(h));
+            GenerateHosts();
             comboBox1.SelectedIndex = 0;
 
 
+        }
+
+        private void GenerateHosts()
+        {
+            string h = TrimHost(textBox1.Text.Trim().Replace(" ", ""));
+             
+            comboBox1.Items.Clear();
+            comboBox1.Items.Add(h);
+            comboBox1.Items.Add(h + ".evil.net");
+            comboBox1.Items.Add(h + ".evil.net" + h);
+            comboBox1.Items.Add(h + ":80.evil.net");
+            comboBox1.Items.Add(StripExceptLastDot(h) + ":80.evil.net" + h);
+            comboBox1.Items.Add(h + "@evil.net"); ;
+            comboBox1.Items.Add(StripExceptLastDot(h) + "@evil.net" + h);
+            comboBox1.Items.Add("%55" + h);
+            comboBox1.Items.Add("%%35%%36." + h);
+
+            comboBox1.Items.Add(h + "." + StripExceptLastDot(h));
+            foreach (string hx in additionalHosts)
+                if (comboBox1.Items.Contains(hx))
+                    continue;
+                else
+                    comboBox1.Items.Add(hx);
         }
 
         private string StripExceptLastDot(string h)
@@ -87,9 +95,18 @@ namespace HostInjector
             }
             catch { }
         }
+        public static string  FilterInvalidHost(string s )
+        {
+            string res="";
+            foreach(char c in s )
+                if ((c>='A' && c<='z')||(c>='0' && c<='9')||(c=='.' || c=='-'))
+                    res+=c;
 
+            return res;
+        }
         private void btnSubmit_Click(object sender, EventArgs e)
         {
+           
             string ResponseMessage="";
             if (textBox1.Text.Length < 2)
             {
@@ -98,6 +115,7 @@ namespace HostInjector
             }
             richTextBoxResponseResult.Text = "";
             labelStatue.Text = "";
+            string meth = textBoxMethod.Text.Trim() ;
             try
             {
                 this.counter++;
@@ -107,12 +125,18 @@ namespace HostInjector
                 storeLastHost(domain);
                 if (textBox1.Text.StartsWith("http://") == false && textBox1.Text.StartsWith("https") == false)
                     url = "http"+(checkBoxHTTPs.Checked?"s":"")+"://" + url;
+                url = url + "/" + textBoxPage.Text.Trim();
                 var req = (HttpWebRequest)WebRequest.Create(url);
                 req.AllowAutoRedirect = false;
                 req.UserAgent = "Mozilla/5.0 (Windows NT 6.1; rv:49.0) Gecko/20100101 Firefox/49.0";
-                req.Host= comboBox1.SelectedItem.ToString();
-               
-            
+                try
+                {
+                    req.Host = comboBox1.SelectedItem.ToString();
+                }
+                catch { req.Host = FilterInvalidHost(comboBox1.SelectedItem.ToString()); }
+                labelFilteredHost.Text = req.Host;
+
+                req.Method = meth.Length > 0 ? meth : "GET";
                 var res = (HttpWebResponse)req.GetResponse();
                 string stcod = ((int)res.StatusCode).ToString();
                 string stDesc = res.StatusDescription;
@@ -128,7 +152,8 @@ namespace HostInjector
                 ResponseMessage += "\n";
                 StreamReader s = new StreamReader(res.GetResponseStream());
                 this.CurrentBody += s.ReadToEnd();
-                ResponseMessage +=  this.CurrentBody;
+                ResponseMessage +=  "\n"+this.CurrentBody;
+                ResponseMessage= ResponseMessage.Replace("\n\n\n", "\n\n");
                 richTextBoxResponseResult.Text = ResponseMessage;
                 labelStatue.Text = "[" + this.counter.ToString() + "] success";
             }
@@ -153,7 +178,7 @@ namespace HostInjector
                         catch { }
                     }
                     this.CurrentBody = body;
-                    responseMessage = responseMessage + "\n\n" + body;
+                    responseMessage = responseMessage  + body;
                     richTextBoxResponseResult.Text = responseMessage;
                     labelStatue.Text = "["+this.counter.ToString()+"] success";
 
@@ -162,7 +187,7 @@ namespace HostInjector
                 catch(Exception xsa) { labelStatue.Text = "["+this.counter.ToString()+"] Error "+xsa.Message; }
 
             }
-           
+            labelFilteredHost_Click(null, null);
         }
 
         private void storeLastHost(string h)
@@ -231,6 +256,26 @@ namespace HostInjector
             FormAbout a = new FormAbout();
             a.Icon = this.Icon;
             a.ShowDialog();
+        }
+
+        private void labelFilteredHost_Click(object sender, EventArgs e)
+        {
+            labelFilteredHost.ForeColor = (labelFilteredHost.Text==textBox1.Text.Trim())?Color.Green:Color.Red;
+        }
+        public List<string> additionalHosts = new List<string>();
+        private void linkLabelCustomHeader_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            FormInp f = new FormInp(textBox1.Text);
+            f.Icon = this.Icon;
+            f.ShowInTaskbar = false;
+            if (f.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string xx =f.GetInput();
+                if (additionalHosts.Contains(xx) == false)
+                    additionalHosts.Add(xx);
+                GenerateHosts();
+                comboBox1.SelectedIndex = comboBox1.Items.Count - 3 + 2;
+            }
         } 
     }
 }

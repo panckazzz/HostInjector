@@ -41,6 +41,12 @@
             this.btnSubmit = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.richTextBoxResponseResult = new System.Windows.Forms.RichTextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBoxMethod = new System.Windows.Forms.TextBox();
+            this.labelFilteredHost = new System.Windows.Forms.Label();
+            this.linkLabelCustomHeader = new System.Windows.Forms.LinkLabel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBoxPage = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,6 +56,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.panel1.Controls.Add(this.textBoxPage);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.linkLabelCustomHeader);
+            this.panel1.Controls.Add(this.labelFilteredHost);
+            this.panel1.Controls.Add(this.textBoxMethod);
+            this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.labelVulnerable);
             this.panel1.Controls.Add(this.linkLabelRender);
             this.panel1.Controls.Add(this.linkLabelAbout);
@@ -122,16 +134,17 @@
             // 
             // comboBox1
             // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(80, 71);
+            this.comboBox1.Location = new System.Drawing.Point(80, 67);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(336, 21);
+            this.comboBox1.Size = new System.Drawing.Size(322, 21);
             this.comboBox1.TabIndex = 7;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(20, 80);
+            this.label3.Location = new System.Drawing.Point(20, 70);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(45, 13);
             this.label3.TabIndex = 6;
@@ -140,7 +153,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(20, 48);
+            this.label1.Location = new System.Drawing.Point(20, 27);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(43, 13);
             this.label1.TabIndex = 1;
@@ -152,13 +165,13 @@
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(75, 55);
             this.btnSubmit.TabIndex = 2;
-            this.btnSubmit.Text = "GET";
+            this.btnSubmit.Text = "Send";
             this.btnSubmit.UseVisualStyleBackColor = true;
             this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(80, 41);
+            this.textBox1.Location = new System.Drawing.Point(80, 20);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(336, 20);
             this.textBox1.TabIndex = 3;
@@ -170,12 +183,67 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBoxResponseResult.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBoxResponseResult.Location = new System.Drawing.Point(23, 112);
+            this.richTextBoxResponseResult.Location = new System.Drawing.Point(23, 133);
             this.richTextBoxResponseResult.Name = "richTextBoxResponseResult";
-            this.richTextBoxResponseResult.Size = new System.Drawing.Size(487, 234);
+            this.richTextBoxResponseResult.Size = new System.Drawing.Size(487, 213);
             this.richTextBoxResponseResult.TabIndex = 4;
             this.richTextBoxResponseResult.Text = "";
             this.richTextBoxResponseResult.TextChanged += new System.EventHandler(this.richTextBoxResponseResult_TextChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(20, 95);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(43, 13);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "Method";
+            // 
+            // textBoxMethod
+            // 
+            this.textBoxMethod.Location = new System.Drawing.Point(80, 89);
+            this.textBoxMethod.Name = "textBoxMethod";
+            this.textBoxMethod.Size = new System.Drawing.Size(262, 20);
+            this.textBoxMethod.TabIndex = 14;
+            this.textBoxMethod.Text = "GET";
+            // 
+            // labelFilteredHost
+            // 
+            this.labelFilteredHost.AutoSize = true;
+            this.labelFilteredHost.Location = new System.Drawing.Point(157, 116);
+            this.labelFilteredHost.Name = "labelFilteredHost";
+            this.labelFilteredHost.Size = new System.Drawing.Size(10, 13);
+            this.labelFilteredHost.TabIndex = 15;
+            this.labelFilteredHost.Text = ".";
+            this.labelFilteredHost.Click += new System.EventHandler(this.labelFilteredHost_Click);
+            // 
+            // linkLabelCustomHeader
+            // 
+            this.linkLabelCustomHeader.AutoSize = true;
+            this.linkLabelCustomHeader.Location = new System.Drawing.Point(408, 70);
+            this.linkLabelCustomHeader.Name = "linkLabelCustomHeader";
+            this.linkLabelCustomHeader.Size = new System.Drawing.Size(14, 13);
+            this.linkLabelCustomHeader.TabIndex = 16;
+            this.linkLabelCustomHeader.TabStop = true;
+            this.linkLabelCustomHeader.Text = "C";
+            this.linkLabelCustomHeader.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelCustomHeader_LinkClicked);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(20, 47);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(32, 13);
+            this.label4.TabIndex = 17;
+            this.label4.Text = "Page";
+            // 
+            // textBoxPage
+            // 
+            this.textBoxPage.Location = new System.Drawing.Point(80, 44);
+            this.textBoxPage.Name = "textBoxPage";
+            this.textBoxPage.Size = new System.Drawing.Size(336, 20);
+            this.textBoxPage.TabIndex = 18;
+            this.textBoxPage.Text = "index.html";
             // 
             // FormMain
             // 
@@ -207,6 +275,12 @@
         private System.Windows.Forms.LinkLabel linkLabelAbout;
         private System.Windows.Forms.LinkLabel linkLabelRender;
         private System.Windows.Forms.Label labelVulnerable;
+        private System.Windows.Forms.TextBox textBoxMethod;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label labelFilteredHost;
+        private System.Windows.Forms.LinkLabel linkLabelCustomHeader;
+        private System.Windows.Forms.TextBox textBoxPage;
+        private System.Windows.Forms.Label label4;
     }
 }
 
