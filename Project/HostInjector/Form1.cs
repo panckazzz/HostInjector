@@ -24,7 +24,7 @@ namespace HostInjector
             btnSubmit.Enabled = IsValidDomain(textBox1.Text);
             comboBox1.Items.Clear();
             GenerateHosts();
-            comboBox1.SelectedIndex = 0;
+            comboBox1.SelectedIndex = 3-2;
 
 
         }
@@ -44,6 +44,7 @@ namespace HostInjector
             comboBox1.Items.Add("%55" + h);
             comboBox1.Items.Add("%%35%%36." + h);
 
+            
             comboBox1.Items.Add(h + "." + StripExceptLastDot(h));
             foreach (string hx in additionalHosts)
                 if (comboBox1.Items.Contains(hx))
@@ -152,7 +153,7 @@ namespace HostInjector
                 ResponseMessage += "\n";
                 StreamReader s = new StreamReader(res.GetResponseStream());
                 this.CurrentBody += s.ReadToEnd();
-                ResponseMessage +=  "\n"+this.CurrentBody;
+                ResponseMessage +=  "\n\n"+this.CurrentBody;
                 ResponseMessage= ResponseMessage.Replace("\n\n\n", "\n\n");
                 richTextBoxResponseResult.Text = ResponseMessage;
                 labelStatue.Text = "[" + this.counter.ToString() + "] success";
@@ -178,7 +179,7 @@ namespace HostInjector
                         catch { }
                     }
                     this.CurrentBody = body;
-                    responseMessage = responseMessage  + body;
+                    responseMessage = responseMessage +"\n" + body;
                     richTextBoxResponseResult.Text = responseMessage;
                     labelStatue.Text = "["+this.counter.ToString()+"] success";
 
