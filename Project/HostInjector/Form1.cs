@@ -162,30 +162,36 @@ namespace HostInjector
             {
                 labelStatue.Text = x.Message;
                 string code = ExtractCode(x.Message);
-                try
+                labelStatue.Text = x.Message;
+                if (x.Message.Contains("Unable to connect to the remote server"))
                 {
-                    var s = (x as System.Net.WebException).Response;
-                    var sc = s.GetResponseStream();
-                    string body = new StreamReader(sc).ReadToEnd();
-                    string responseMessage = "HTTP/1.1 "+(code)+"\n";
-                    for (int i = 0; i < s.Headers.Count; i++)
-                    {
-                        try
-                        {
-                            string k = s.Headers.GetKey(i);
-                            string v = s.Headers[k];
-                            responseMessage += k + ": " + v + "\n";
-                        }
-                        catch { }
-                    }
-                    this.CurrentBody = body;
-                    responseMessage = responseMessage +"\n" + body;
-                    richTextBoxResponseResult.Text = responseMessage;
-                    labelStatue.Text = "["+this.counter.ToString()+"] success";
-
-
+                    labelStatue.Text = "Unable to connect to the remote server";
                 }
-                catch(Exception xsa) { labelStatue.Text = "["+this.counter.ToString()+"] Error "+xsa.Message; }
+                else
+                    try
+                    {
+                        var s = (x as System.Net.WebException).Response;
+                        var sc = s.GetResponseStream();
+                        string body = new StreamReader(sc).ReadToEnd();
+                        string responseMessage = "HTTP/1.1 " + (code) + "\n";
+                        for (int i = 0; i < s.Headers.Count; i++)
+                        {
+                            try
+                            {
+                                string k = s.Headers.GetKey(i);
+                                string v = s.Headers[k];
+                                responseMessage += k + ": " + v + "\n";
+                            }
+                            catch { }
+                        }
+                        this.CurrentBody = body;
+                        responseMessage = responseMessage + "\n" + body;
+                        richTextBoxResponseResult.Text = responseMessage;
+                        labelStatue.Text = "[" + this.counter.ToString() + "] success";
+
+
+                    }
+                    catch (Exception xsa) { labelStatue.Text = "[" + this.counter.ToString() + "] Error " + xsa.Message; }
 
             }
             labelFilteredHost_Click(null, null);
